@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Import Boostrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+    <title>Fibonacci and Calculator</title>
+    <!-- Custom CSS -->
+    <style>
+        body {
+            width: 900px;
+            margin: 4% auto;
+            font-family: 'Source Sans Pro', sans-serif;
+            letter-spacing: 5px;
+            font-size: 1.8rem;
+        }
+        .input {
+            border: 1px solid #ddd;
+            border-radius: 1px;
+            height: 60px;
+            padding-right: 15px;
+            padding-top: 10px;
+            text-align: right;
+            margin-right: 6px;
+            font-size: 2.5rem;
+            overflow-x: auto;
+            transition: all .2s ease-in-out;
+        }
+
+        .input:hover {
+            border: 1px solid #bbb;
+            -webkit-box-shadow: inset 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+            box-shadow: inset 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+        }
+
+    
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="card mt-5">
+            <div class="card-body">
+                <h1>Fibonacci</h1>
+                <button class="btn btn-primary btn-sm" onclick="fibo()">Start</button>
+                <p>Fibonacci Series:</p>
+                <span id="result_fibonacci"></span>
+            </div>
+
+        </div>
+
+        <div class="card mt-5">
+            <div class="card-body">
+                <html>
+
+                <body>
+                    <fieldset>
+                        <h1>Calculator with Arrow Function :</h1>
+
+                        Number 1: <br> <input type="text" id="txtFirstNumber" /><br><br>
+                        Number 2: <br><input type="text" id="txtSecondNumber" /><br><br>
+                        <div class="row"><input type="button" class="btn mx-2 btn-light btn-lg" onclick="Operation('+')" id="btnADD" value="Addition ( + )" />
+                        <input type="button" class="btn mx-2 btn-light btn-lg" onclick="Operation('-')" id="btnSUB" value="Subtraction ( - )" />
+                        <input type="button" class="btn mx-2 btn-light btn-lg" onclick="Operation('*')" id="btnMUL" value="Multiplication ( * )" />
+                        <input type="button" class="btn mx-2 btn-light btn-lg" onclick="Operation('/')" id="btnDIV" value="Division ( / )" /></div>
+                        
+                    </fieldset>
+                </body>
+
+                </html>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script>
+
+        // inisialisasi function fibonnaci
+        function fibo() {
+            // meminta input berapa angka yang diinginkan
+            const number = parseInt(prompt('Enter the number of terms: '));
+            // deklarasi variabel yang dibutuhkan
+            let n1 = 0, n2 = 1, nextTerm;
+
+            // deklarasi array untuk menyimpan fibonnaci series
+            const fibonacci = [];
+
+            // perulangan untuk mendapatkan nilai fibonnaci
+            for (let i = 1; i <= number; i++) {
+                // Menambah nilai kedalam array
+                fibonacci.push(n1);
+
+                nextTerm = n1 + n2;
+                n1 = n2;
+                n2 = nextTerm;
+            }
+            // menampilkan hasil pada html
+            document.getElementById("result_fibonacci").innerHTML = fibonacci;
+        }
+
+        // Calculator
+
+        // arrow function
+        // inisialisasi function
+        function Operation(operand) {
+
+            // deklarasi variabel angka pertama
+            var firstValue = parseInt(document.getElementById('txtFirstNumber').value);
+            // deklarasi variabel angka ke dua
+            var secondValue = parseInt(document.getElementById('txtSecondNumber').value);
+            // init result
+            var result = 0;
+            // cek operator yang diminta
+            switch (operand) {
+                case '+': result = ((x, y) => { return x + y; })(firstValue, secondValue); break;
+                case '-': result = ((x, y) => { return x - y; })(firstValue, secondValue); break;
+                case '*': result = ((x, y) => { return x * y; })(firstValue, secondValue); break;
+                case '/': result = ((x, y) => { return x / y; })(firstValue, secondValue); break;
+            }
+            // menampilkan hasil pada alert
+            alert('The result is : ' + result);
+        }
+    </script>
+
+</body>
+
+</html>
